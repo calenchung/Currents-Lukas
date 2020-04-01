@@ -1,0 +1,25 @@
+#container {
+	margin: 0px auto;
+  margin-top: 1vw;
+	width: 70%;
+	height: auto;
+	border: none;
+}
+
+#videoElement {
+  margin: 0px auto;
+	width: 69.3vw;
+	height: auto;
+	background-color: #666;
+}
+
+#effect1 {
+  margin: 0px auto;
+	width: 69.3vw;
+	height: 51.9vw;
+  background-color: red;
+  z-index: 1;
+  position: fixed;
+  opacity: .5;
+  display: none;
+}

@@ -33,11 +33,11 @@ h2 {
 #response {
   margin-top: 10vw;
   font-size: 50px;
+  color: grey;
 }
 
 #response-translated {
   font-size: 50px;
-  color: grey;
 }
 
 .output {

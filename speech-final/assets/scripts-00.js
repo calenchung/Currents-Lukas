@@ -31,7 +31,7 @@ function initialize(){
       '(bonjour)(hello)': hello,
       // 'ça va *splat (et toi)(et vous)': hello2,
       '*splat how are you': hello2,
-      '(i\m)(i am)(okay)(fine)(good)(bad)': hello2a,
+      'my name is *splat (you)(name)': name,
     }
 
     annyang.addCommands(commands);
@@ -58,9 +58,9 @@ function english() {
 
 
 function hello() {
-    var utterThis = new SpeechSynthesisUtterance('bonjour, comment ça va?');
-    document.getElementById('response').innerHTML = ('bonjour, comment ça va?');
-    document.getElementById('response-translated').innerHTML = ('hello, how are you?');
+    var utterThis = new SpeechSynthesisUtterance('Bonjour, comment ça va?');
+    // document.getElementById('response').innerHTML = ('Bonjour, comment ça va?');
+    document.getElementById('response-translated').innerHTML = ('Hello, how are you?');
     utterThis.pitch = 1;
     utterThis.rate = 1.1;
     utterThis.lang = 'fr-FR';
@@ -68,23 +68,33 @@ function hello() {
 }
 
 function hello2() {
-    var utterThis = new SpeechSynthesisUtterance('comme ci comme ça, merci.');
-    document.getElementById('response').innerHTML = ('comme ci comme ça, merci.');
-    document.getElementById('response-translated').innerHTML = ('okay, thanks.');
+    var utterThis = new SpeechSynthesisUtterance('Comme ci comme ça, merci. Comment tu t\'appelles?');
+    // document.getElementById('response').innerHTML = ('Comme ci comme ça, merci. Comment tu t\'appelles?');
+    document.getElementById('response-translated').innerHTML = ('I\'m okay, thanks. What\s your name?');
     utterThis.pitch = 1;
     utterThis.rate = 1.1;
     utterThis.lang = 'fr-FR';
     synth.speak(utterThis);
-    console.log(event.results[0][0]);
 }
 
-function hello2a() {
-    var utterThis = new SpeechSynthesisUtterance('Daccord');
-    document.getElementById('response').innerHTML = ('D\'accord. Quel temp fait-il?');
-    document.getElementById('response-translated').innerHTML = ('Okay. How is the weather?');
+function name() {
+    var utterThis = new SpeechSynthesisUtterance('Enchanté. Je m\'appelle Thomas.');
+    document.getElementById('response').innerHTML = ('Enchanté. Je m\'appelle Thomas.');
+    document.getElementById('response-translated').innerHTML = ('Nice to meet you. My name is Thomas.');
     utterThis.pitch = 1;
     utterThis.rate = 1.1;
     utterThis.lang = 'fr-FR';
     synth.speak(utterThis);
-    console.log(event.results[0][0]);
+
+    document.body.onclick = function name2() {
+    var utterThis = new SpeechSynthesisUtterance('Qu\'est-ce qui préoccupe votre esprit');
+    document.getElementById('response').innerHTML = ('Qu\'est-ce qui préoccupe votre esprit');
+    document.getElementById('response-translated').innerHTML = ('what\'s on your mind');
+    utterThis.pitch = 1;
+    utterThis.rate = 1.1;
+    utterThis.lang = 'fr-FR';
+    synth.speak(utterThis);
+  }
+
+
 }
