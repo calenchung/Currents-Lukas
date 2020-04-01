@@ -1,0 +1,8 @@
+h1 {
+  color: red;
+}
+
+.bolder {
+  border: 10px solid red;
+  font-weight: bold;
+}

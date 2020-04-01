@@ -1,0 +1,46 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: helvetica, arial;
+}
+
+
+.market {
+  font-size: 3vw;
+  padding: 2vw;
+}
+
+.apple {
+  margin: auto;
+  width: 14vw;
+}
+
+.banana {
+  margin: auto;
+  width: 14vw;
+}
+
+.orange {
+  margin: auto;
+  width: 14vw;
+}
+
+#input_text {
+  display: none;
+}
+
+
+#total {
+  font-size: 5vw;
+  padding: 2vw;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  display: none;
+}
+
+#promptCheckout {
+  display: none;
+  padding: 2vw;
+}

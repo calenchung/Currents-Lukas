@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Social Interaction</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="assets/main.css">
+</head>
+<body>
+
+  <button id="button" onclick="javascript:PlaySound('assets/belt.wav');">Place Items Down</button>
+
+  <h1>"Hi, how are you doing today?"</h1>
+
+  <h1 id="good">"Great! Did anyone help you out today?"</h1>
+  <h1 id="alright">"Oh, same. Did anyone help you out today?"</h1>
+  <h1 id="bad">"Oh, uh ok. Did anyone help you find anything today?"</h1>
+
+  <div id="help"></div>
+  <h1 id="no-help">"Oh, sorry about that."</h1>
+
+  <audio controls id="beep" class="audio">
+    <source src="assets/beep.mp3" type="audio/mpeg">
+  </audio>
+
+  <audio controls id="belt" class="audio">
+    <source src="assets/belt.wav" type="audio/wav">
+  </audio>
+
+
+
+
+  <script type="text/javascript" src="assets/annyang_minified.js"></script>
+  <script type="text/javascript" src="assets/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: helvetica, arial;
+}
+
+h1 {
+  padding: 2vw;
+  font-size: 3vw;
+}
+
+#intro, #meat, #lbs {
+  padding: 2vw;
+  font-size: 2vw;
+  font-weight: bold;
+}
+
+#wrapped-meat {
+  display: none;
+  width: 50vw;
+  margin: auto;
+}
