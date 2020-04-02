@@ -28,49 +28,54 @@ window.speechSynthesis.onvoiceschanged = function() {
   voices = synth.getVoices();
 }
 
-// document.body.onclick = function() {
-//   quests.start();
-// }
+
+function firstQuestion() {
+  var quests = ["how confident are you for the future?", "when did you last see a friend in person?", "how was your day?", "did you get some fresh air today?", "what do you miss most?"];
+  var randomIndex = Math.floor(Math.random()*quests.length);
+  var randomQuestion = quests[randomIndex];  document.getElementById('questions').innerHTML = (randomQuestion);
+      var utterThis = new SpeechSynthesisUtterance(randomQuestion);
+      utterThis.lang = 'en-EN';
+      utterThis.voice = voices[49];
+      utterThis.pitch = 1;
+      utterThis.rate = 1;
+      synth.speak(utterThis);
+}
 
 
-var quests = ["how confident are you for the future?", "when did you last see a friend in person?", "how was your day?", "did you get some fresh air today?", "what do you miss most?"],
-    i = -1;
-(function f(){
-    i = (i + 1) % quests.length;
-    document.getElementById('questions').innerHTML = quests[ i ] + '<br/>';
-    setTimeout(f, 10000);
- })();
+window.onclick = function() {
+  var quests = ["how confident are you for the future?", "when did you last see a friend in person?", "how was your day?", "did you get some fresh air today?", "what do you miss most?"];
+  var randomIndex = Math.floor(Math.random()*quests.length);
+  var randomQuestion = quests[randomIndex];  document.getElementById('questions').innerHTML = (randomQuestion);
+      var utterThis = new SpeechSynthesisUtterance(randomQuestion);
+      utterThis.lang = 'en-EN';
+      utterThis.voice = voices[49];
+      utterThis.pitch = .9;
+      utterThis.rate = 1;
+      synth.speak(utterThis);
+}
 
- quests.onresult = function(quests) {
-   var spoken = quests.results[0][0].transcript;
-   diagnostic.textContent = quests;
-   var utterThis = new SpeechSynthesisUtterance(diagnostic.textContent);
-   utterThis.lang = 'en-EN';
-   utterThis.voice = voices[0];
-   utterThis.pitch = .9;
-   utterThis.rate = 1.1;
-   synth.speak(utterThis);
-   console.log(speechSynthesis.getVoices());
- }
 
 
 function initialize(){
   if (annyang) {
     var commands = {
-      'test': effect1,
-      'red': effect2,
-      'white': effect3,
-      'clear': noEffect2,
-      'month': ts1,
-      'year': ts2,
-      'day': ts3,
-      'not': ts4,
-      'scared': ts5,
-      'a little': ts6,
-      'bad': ts7,
-      'touch': ts8,
-      'physical': ts9,
-      'sunlight': ts10,
+      '*splat touch *splat': effect1,
+      '*splat* think *splat': effect2,
+      '*splat faces': effect3,
+      'i don\'t know': effect4,
+      '*splat* what *splat': effect5,
+      '*splat not *splat': noEffects,
+      '*splat thanks *splat': ts1,
+      '*splat year': ts2,
+      // '*splat day *splat': ts3,
+      // '*splat days *splat': ts3,
+      // 'not': ts4,
+      // 'scared': ts5,
+      // 'a little': ts6,
+      // 'bad': ts7,
+      // 'touch': ts8,
+      // 'physical': ts9,
+      // 'sunlight': ts10,
     }
 
     annyang.addCommands(commands);
@@ -80,21 +85,56 @@ function initialize(){
 
 }
 
-function ts1() {
-  document.getElementById('month').style.display = 'block';
 
+
+function getRandomPosition(element) {
+	var x = document.body.offsetHeight-element.clientHeight;
+	var y = document.body.offsetWidth-element.clientWidth;
+	var randomX = Math.floor(Math.random()*x);
+	var randomY = Math.floor(Math.random()*y);
+	return [randomX,randomY];
 }
 
 
 
-function noEffect2() {
-  document.getElementById('effect2').style.display = 'none';
-  console.log('ok clear')
+function ts1() {
+  var word = document.getElementById('thanks');
+  document.body.appendChild(thanks);
+  var xy = getRandomPosition(thanks);
+  word.style.bottom = xy[1] + 'px';
+  word.style.left = xy[1] + 'px';
+  document.getElementById('thanks').style.display = 'block';
+}
+
+function ts2() {
+  var word2 = document.getElementById('year');
+  document.body.appendChild(year);
+  var xy = getRandomPosition(year);
+  word2.style.top = xy[1] + 'px';
+  word2.style.left = xy[1] + 'px';
+  document.getElementById('year').style.display = 'block';
+}
+
+
+//-----------------//-----------------//-----------------
+//---END OF TRANSLATED WORDS -> START OF EFFECTS-----
+//-----------------//-----------------//-----------------
+
+
+function noEffects() {
+  document.getElementById('no').style.display = "none";
+}
+
+function effect5() {
+  document.getElementById('effect5').style.display = 'block';
+}
+
+function effect4() {
+  document.getElementById('effect4').style.display = 'block';
 }
 
 function effect2() {
   document.getElementById('effect2').style.display = 'block';
-  console.log('ok')
 }
 
 

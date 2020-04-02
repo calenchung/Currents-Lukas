@@ -9,18 +9,68 @@ video, canvas {
   margin-top: 120px;
   width: 640px;
   height: 480px;
-  background-color: red;
+  background-color: yellow;
   z-index: 1;
   position: absolute;
   opacity: .5;
   display: none;
 }
 
+#effect4 {
+  margin-left: 5vw;
+  margin-top: 120px;
+  width: 640px;
+  height: 480px;
+  background-color: black;
+  z-index: 1;
+  position: absolute;
+  opacity: .6;
+  display: none;
+}
+
+#effect5 {
+  margin-left: 5vw;
+  margin-top: 120px;
+  width: 640px;
+  height: 480px;
+  background-color: green;
+  z-index: 1;
+  position: absolute;
+  opacity: .50;
+  display: none;
+}
+
 #questions {
   font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
   margin-left: 30vw;
   margin-top: 380px;
   text-align: center;
   float: right;
   width: 50%;
+}
+
+.language {
+  font-family: 'Noto Sans','Noto Sans KR', sans-serif;
+  font-size: 48px;
+  text-align: center;
+  padding: 10px;
+  color: white;
+  border-radius: 50px;
+  z-index: 10;
+  position: absolute;
+  display: none;
+}
+
+#thanks {
+  background-color: #00FF19;
+  transform: rotate(30deg);
+  width: 230px;
+}
+
+#year {
+  background-color: #00FF19;
+  transform: rotate(-30deg);
+  width: 150px;
 }
