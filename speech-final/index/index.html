@@ -6,8 +6,7 @@
   <link rel="stylesheet" href="assets/demo.css">
   <link rel="stylesheet" href="assets/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Noto+Sans:ital@1&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&family=Noto+Sans+KR&display=swap" rel="stylesheet">
   <script src="../build/tracking.js"></script>
   <script src="../build/data/face-min.js"></script>
   <script src="../src/alignment/training/Landmarks.js"></script>
@@ -16,19 +15,24 @@
   <script src="../node_modules/dat.gui/build/dat.gui.min.js"></script>
 
 </head>
-<body onload="firstQuestion()">
-    <div id="thanks" class="language">고맙습니다</div>
+<body id="effectBlur" onload="firstQuestion()">
+  <div>
+    <!-- <div id="dot"></div> -->
+    <div id="thanks" class="language">생각한다</div>
     <div id="year" class="language">साल</div>
-    <!-- <div id="day" class="language">journée</div> -->
+    <div id="day" class="language">journée</div>
+    <div id="scared" class="language">φοβισμένος</div>
 
-    <div id="effect5 no"></div>
-    <div id="effect4 no"></div>
-    <div id="effect2 no"></div>
+
+    <div id="effect5"></div>
+    <div id="effectBlack"></div>
+    <div id="effectRed"></div>
+    <div id="effectYellow"></div>
     <video autoplay="true" id="videoElement" width="640" height="480"></video>
     <canvas id="canvas" width="640" height="480"></canvas>
 
     <h1 id="questions"></h1>
-
+  </div>
 </body>
 
 <script src="assets/scripts.js"></script>

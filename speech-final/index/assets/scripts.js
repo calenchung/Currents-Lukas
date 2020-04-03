@@ -1,5 +1,27 @@
 document.addEventListener("DOMContentLoaded", initialize);
 
+
+
+onInactive(60000, function () {
+    document.getElementById('effectBlur').style.filter = 'blur(40px)';
+});
+
+function onInactive(ms, cb) {
+
+    var wait = setTimeout(cb, ms);
+
+    document.onmousemove = document.mousedown = document.mouseup = document.onkeydown = document.onkeyup = document.focus = function () {
+        clearTimeout(wait);
+        wait = setTimeout(cb, ms);
+    };
+}
+
+
+document.onmousemove = function () {
+    document.getElementById('effectBlur').style.filter = 'none';
+};
+
+
 var video = document.querySelector("#videoElement");
 var canvas = document.getElementById('canvas');
 var context = canvas.getContext('2d');
@@ -30,7 +52,7 @@ window.speechSynthesis.onvoiceschanged = function() {
 
 
 function firstQuestion() {
-  var quests = ["how confident are you for the future?", "when did you last see a friend in person?", "how was your day?", "did you get some fresh air today?", "what do you miss most?"];
+  var quests = ["how confident are you for the future?", "when did you last see a friend in person?", "how was your day?", "did you get some fresh air today?", "what do you miss most?", "what did you accomplish today?", "what is a goal for this week?"];
   var randomIndex = Math.floor(Math.random()*quests.length);
   var randomQuestion = quests[randomIndex];  document.getElementById('questions').innerHTML = (randomQuestion);
       var utterThis = new SpeechSynthesisUtterance(randomQuestion);
@@ -43,7 +65,7 @@ function firstQuestion() {
 
 
 window.onclick = function() {
-  var quests = ["how confident are you for the future?", "when did you last see a friend in person?", "how was your day?", "did you get some fresh air today?", "what do you miss most?"];
+  var quests = ["how confident are you for the future?", "when did you last see a friend in person?", "how was your day?", "did you get some fresh air today?", "what do you miss most?", "how have you been feeling lately?", "what are you going to learn this week?"];
   var randomIndex = Math.floor(Math.random()*quests.length);
   var randomQuestion = quests[randomIndex];  document.getElementById('questions').innerHTML = (randomQuestion);
       var utterThis = new SpeechSynthesisUtterance(randomQuestion);
@@ -54,21 +76,28 @@ window.onclick = function() {
       synth.speak(utterThis);
 }
 
+//-----------------//-----------------//-----------------
+//---ANNYANG-----ANNYANG------------ANNYANG-------------
+//-----------------//-----------------//----------------
 
 
 function initialize(){
   if (annyang) {
     var commands = {
-      '*splat touch *splat': effect1,
-      '*splat* think *splat': effect2,
-      '*splat faces': effect3,
-      'i don\'t know': effect4,
-      '*splat* what *splat': effect5,
-      '*splat not *splat': noEffects,
-      '*splat thanks *splat': ts1,
+      '*splat feeling *splat': effectFace,
+      'yes': effectRed,
+      '*splat if *splat': effectBlack,
+      '*splat would *splat': effectYellow,
+      '*splat know': effect3,
+      '*splat what *splat': effect5,
+      '*splat miss *splat': effectInvert,
+      '*splat think *splat': ts1,
       '*splat year': ts2,
-      // '*splat day *splat': ts3,
-      // '*splat days *splat': ts3,
+      '*splat days *splat': ts3,
+      '*splat scary': ts4,
+      '*splat i *splat': dot,
+      '*splat the *splat': triangle,
+      '*splat that *splat': square,
       // 'not': ts4,
       // 'scared': ts5,
       // 'a little': ts6,
@@ -81,20 +110,40 @@ function initialize(){
     annyang.addCommands(commands);
     annyang.start();
     annyang.addCallback('result');
+    annyang.addCallback('resultNoMatch', resultNoMatch);
+
   }
 
 }
 
+//-----------------//-----------------//-----------------
+//---END OF COMMANDS -> START OF EFFECTS-----
+//-----------------//-----------------//-----------------
+
+
+function resultNoMatch() {
+  document.getElementById('effect5').style.display = 'none';
+  document.getElementById('thanks').style.display = 'none';
+  document.getElementById('year').style.display = 'none';
+  document.getElementById('day').style.display = 'none';
+  document.getElementById('effectRed').style.display = 'none';
+  document.getElementById('effectBlack').style.display = 'none';
+  document.getElementById('effectYellow').style.display = 'none';
+  document.getElementById('videoElement').style.filter = null;
+
+}
+
+
+
 
 
 function getRandomPosition(element) {
-	var x = document.body.offsetHeight-element.clientHeight;
-	var y = document.body.offsetWidth-element.clientWidth;
-	var randomX = Math.floor(Math.random()*x);
-	var randomY = Math.floor(Math.random()*y);
+	var x = screen.width;
+	var y = screen.height;
+	var randomX = Math.floor(Math.random() * (x-100));
+	var randomY = Math.floor(Math.random() * (y-100));
 	return [randomX,randomY];
 }
-
 
 
 function ts1() {
@@ -115,30 +164,86 @@ function ts2() {
   document.getElementById('year').style.display = 'block';
 }
 
+function ts3() {
+  var word3 = document.getElementById('day');
+  document.body.appendChild(day);
+  var xy = getRandomPosition(day);
+  word3.style.top = xy[1] + 'px';
+  word3.style.left = xy[1] + 'px';
+  document.getElementById('day').style.display = 'block';
+}
+
+function ts4() {
+  var word4 = document.getElementById('scared');
+  document.body.appendChild(day);
+  var xy = getRandomPosition(day);
+  word4.style.top = xy[1] + 'px';
+  word4.style.left = xy[1] + 'px';
+  document.getElementById('scared').style.display = 'block';
+}
 
 //-----------------//-----------------//-----------------
 //---END OF TRANSLATED WORDS -> START OF EFFECTS-----
 //-----------------//-----------------//-----------------
 
-
-function noEffects() {
-  document.getElementById('no').style.display = "none";
+function effectInvert() {
+  document.getElementById('videoElement').style.filter = 'invert(100%)';
 }
 
-function effect5() {
-  document.getElementById('effect5').style.display = 'block';
+function square() {
+    section=document.createElement('div');
+    section.id = 'square';
+    document.body.appendChild(section);
+
+    var x=Math.random()*1000;
+    x=Math.round(x);
+    var y=Math.random()*500;
+    y=Math.round(y);
+    section.style.left=x+'px';
+    section.style.top=y+'px';
 }
 
-function effect4() {
-  document.getElementById('effect4').style.display = 'block';
+function triangle() {
+    section=document.createElement('div');
+    section.id = 'triangle';
+    document.body.appendChild(section);
+
+    var x=Math.random()*1000;
+    x=Math.round(x);
+    var y=Math.random()*500;
+    y=Math.round(y);
+    section.style.left=x+'px';
+    section.style.top=y+'px';
 }
 
-function effect2() {
-  document.getElementById('effect2').style.display = 'block';
+
+function dot() {
+    section=document.createElement('div');
+    section.id = 'dot';
+    document.body.appendChild(section);
+
+    var x=Math.random()*1000;
+    x=Math.round(x);
+    var y=Math.random()*500;
+    y=Math.round(y);
+    section.style.left=x+'px';
+    section.style.top=y+'px';
+}
+
+function effectBlack() {
+  document.getElementById('effectBlack').style.display = 'block';
 }
 
 
-function effect1() {
+function effectRed() {
+  document.getElementById('effectRed').style.display = 'block';
+}
+
+function effectYellow() {
+  document.getElementById('effectYellow').style.display = 'block';
+}
+
+function effectFace() {
 var tracker = new tracking.LandmarksTracker();
 tracker.setInitialScale(4);
 tracker.setStepSize(2);
